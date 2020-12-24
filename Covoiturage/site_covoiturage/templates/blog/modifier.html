@@ -1,0 +1,87 @@
+{% extends 'blog/base.html' %}
+
+{% block stylesheets %}
+     <head>
+    <title>Ajout de trajet</title>
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/base.css">
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/nav_sidebar.css">
+    <script src="/static/admin/js/nav_sidebar.js" defer=""></script>
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/forms.css">
+    <script src="/admin/jsi18n/"></script>
+    <script src="/static/admin/js/vendor/jquery/jquery.js"></script>
+    <script src="/static/admin/js/calendar.js"></script>
+    <script src="/static/admin/js/jquery.init.js"></script>
+    <script src="/static/admin/js/admin/DateTimeShortcuts.js"></script>
+    <script src="/static/admin/js/core.js"></script>
+    <script src="/static/admin/js/admin/RelatedObjectLookups.js"></script>
+    <script src="/static/admin/js/actions.js"></script>
+    <script src="/static/admin/js/urlify.js"></script>
+    <script src="/static/admin/js/prepopulate.js"></script>
+    <script src="/static/admin/js/vendor/xregexp/xregexp.js"></script>
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/responsive.css">
+    <meta name="robots" content="NONE,NOARCHIVE">
+</head>
+{% endblock %}
+
+{% block body %}
+    <div class="content">
+        <div id="content" class="colM">
+          <h1>Modification de trajet</h1>
+          <div id="content-main">
+              <form action="{% url 'index'%}">
+                  {% csrf_token %}
+                  <div>
+                      <fieldset class="module aligned ">
+                          <div class="form-row field-depart">
+                              <div>
+                                  <label class="required" for="id_depart_0">Date départ&nbsp;:</label>
+                                  <p class="datetime">
+                                      Date&nbsp;: <input type="text" name="depart_0" value="03/09/2020" class="vDateField" size="10" required="" id="id_depart_0">
+                                      <span></a>&nbsp;<a href="#" id="calendarlink0">
+                                          <span class="date-icon" title="Choisir une date">
+                                          </span></a>
+                                      </span><br>
+                                      Heure&nbsp;: <input type="text" name="depart_1" value="13:00:29" class="vTimeField" size="8" required="" id="id_depart_1">
+                                      <span>&nbsp;<a href="#" id="clocklink0">
+                                          <span class="clock-icon" title="Choisir une heure">
+                                          </span></a>
+                                      </span>
+                                  </p>
+                              </div>
+                          </div>
+                          <div class="form-row field-arrive">
+                              <div>
+                                  <label class="required" for="id_arrive_0">Date d'arrivée&nbsp;:</label>
+                                  <p class="datetime">
+                                      Date&nbsp;: <input type="text" name="arrive_0" value="03/09/2020" class="vDateField" size="10" required="" id="id_arrive_0">
+                                      <span></a>&nbsp;<a href="#" id="calendarlink1">
+                                          <span class="date-icon" title="Choisir une date">
+                                          </span></a>
+                                      </span>
+                                      <br>Heure&nbsp;: <input type="text" name="arrive_1" value="17:30:47" class="vTimeField" size="8" required="" id="id_arrive_1">
+                                      <span></a>&nbsp;<a href="#" id="clocklink1">
+                                          <span class="clock-icon" title="Choisir une heure">
+                                          </span></a>
+                                      </span>
+                                  </p>
+                              </div>
+                          </div>
+                          <div class="form-row field-pri">
+                              <div>
+                                  <label class="required" for="id_pri">Pri&nbsp;:</label>
+                                  <input type="number" name="pri" value="250" class="vIntegerField" required="" id="id_pri">
+                              </div>
+                          </div>
+                      </fieldset>
+                      <div class="submit-row">
+                          <input type="submit" value="Modifier">
+                          <p class="deletelink-box"><a href="{% url 'conducteur' %}" class="deletelink">Retour</a></p>
+                      </div>
+                  </div>
+              </form>
+          </div>
+            <br class="clear">
+        </div>
+      </div>
+{% endblock %}

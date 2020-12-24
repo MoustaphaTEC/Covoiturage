@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Covoiturage{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">-->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/base.css">
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/nav_sidebar.css">
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/dashboard.css">
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/responsive.css">
+
+    {% block stylesheets %} {% endblock %}
+</head>
+<body class=" dashboard" data-admin-utc-offset="0">
+    {% include 'layouts/_nav.html' %}
+
+    <div class="wrapper">
+        {% block content %} {% endblock %}
+        {% include 'layouts/_footer.html' %}
+    </div>
+
+
+
+{% block javascripts %}
+    <script src="/static/admin/js/nav_sidebar.js" defer></script>
+    <script src="/static/admin/js/actions.js"></script>
+
+{% endblock %}
+</body>
+</html>

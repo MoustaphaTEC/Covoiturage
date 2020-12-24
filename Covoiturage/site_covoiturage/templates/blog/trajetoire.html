@@ -1,0 +1,21 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}Covoiturage{% endblock %}
+
+{% block body %}
+    <h1></h1>
+    <h2>Blog des trajets : {{ trajets|length }} Postés</h2>
+    <h1></h1>
+    {% for trajet in trajets %}
+        <article id="acide">
+            <h4 class="title">#{{trajet.id }} - {{ trajet.title|upper }}</h4>
+            <span class="sppb-panel-title">
+                <a href="{% url 'modifier' trajet.id %}">[modifier]</a>
+            </span>
+            <span class="sppb-panel-title">
+                <a href="{% url 'supprimer' trajet.id %}">[supprimer]</a>
+            </span>
+        </article>
+    {% endfor %}
+    <p><a href="{% url 'index'%}">Tous les trajets.</a></p>
+{% endblock %}

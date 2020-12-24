@@ -1,0 +1,29 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}Covoiturage{% endblock %}
+
+{% block body %}
+    <h1></h1>
+    <h2>Trajet : {{ trajet.id }}</h2>
+    <h1></h1>
+    <article>
+        <h2 class="title">#{{trajet.id }} - {{ trajet.title|upper }}</h2>
+            <p class="content">Départ : {{trajet.lieu_depart}} <time class="time">{{trajet.depart}}</time></p>
+            <p>Arrivée : {{trajet.lieu_arrive}} <time class="time">{{trajet.arrive}}</time></p>
+            <p>Tarif : {{trajet.pri}} FCFA</a></p>
+            <p>Place disponible(s) : {{trajet.conducteur.nb_place}}</p>
+                <p class="content">Passager(ères) inscrit(s) :
+                    {% for passag in passagers %}
+                        {% if trajet.title == passag.trajet.title %}
+                            <a href="{% url 'affichePassager' passag.id %}">[ {{passag.prenom }} {{passag.nom|upper }} ]</a>
+                        {% endif %}
+                    {% endfor %}
+                 </p>
+            <p class="content">
+                Conducteur : {{trajet.conducteur.prenom}} {{trajet.conducteur.nom}}
+                <a href="{% url 'afficheConducteur' trajet.conducteur.id %}"> Voir le profil de [{{trajet.conducteur.prenom}}]</a></p>
+
+    </article>
+
+    <p><a href="{% url 'index'%}">Tous les trajets.</a></p>
+{% endblock %}

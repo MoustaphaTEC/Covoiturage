@@ -1,0 +1,35 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}Covoiturage{% endblock %}
+
+{% block body %}
+        <h1></h1>
+    <h2>Blog des trajets : {{ trajets|length }} Postés</h2>
+    <h1></h1>
+    {% for trajet in trajets %}
+        <article>
+            <h4 class="title"><a href="{% url 'show' trajet.id %}">#{{trajet.id }} - {{ trajet.title|upper }}</a></h4>
+            <p class="time"><time datetime="{{trajet.created_at|date:'Y-m-d' }}">Postée il y'a {{trajet.created_at|timesince}}</time></p>
+            <p>
+                <span class="sppb-panel-title">
+                    <div>
+                        Départ : <strong>{{trajet.lieu_depart}} <time class="time">{{trajet.depart}}</time></strong>
+                    </div>
+                  </span>
+            </p>
+            <span class="sppb-panel-title">
+                <div>
+                    Arrivée :<strong> {{trajet.lieu_arrive}} <time class="time">{{trajet.arrive}}</time></strong>
+                </div>
+            </span>
+            <p>
+                <span>
+                <div>
+                    <a href="{% url 'show' trajet.id %}">Voir les [détails]</a>
+                </div>
+            </span>
+            </p>
+
+        </article>
+    {% endfor %}
+{% endblock %}

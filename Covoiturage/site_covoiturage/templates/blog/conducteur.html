@@ -1,0 +1,31 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}Covoiturage{% endblock %}
+
+{% block body %}
+    <h1></h1>
+    <h2>Blog des conducteurs</h2>
+    <h1></h1>
+    {% for conducteur in conducteurs %}
+        <article>
+            <h5 class="title">#{{conducteur.prenom }} - {{ conducteur.nom|upper }}</h5>
+            <ul class="object-tools">
+                <li>
+                    <a href="{% url 'creation' conducteur.id %}" class="addlink">
+                        Ajouter trajet
+                    </a>
+                </li>
+            </ul>
+
+            <p class="content">Trajets proposés :
+                    {% for trajet in trajets %}
+                        {% if trajet.conducteur.id == conducteur.id %}
+            <a href="{% url 'show' trajet.id %}">[ {{trajet.title }} ]</a>
+                        {% endif %}
+                    {% endfor %}
+            </p>
+            <p class="content">Place disponible : {{conducteur.nb_place}}</p>
+        </article>
+    {% endfor %}
+    <p><a href="{% url 'index'%}">Tous les trajets.</a></p>
+{% endblock %}

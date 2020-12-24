@@ -1,0 +1,41 @@
+{% extends 'blog/base.html' %}
+
+{% block stylesheets %}
+<head>
+    <title>Suppression</title>
+</head>
+{% endblock %}
+
+{% block body %}
+<div class="content">
+        <div id="content" class="colM">
+            <h1>Êtes-vous sûr ?</h1>
+            <p>Voulez-vous vraiment supprimer l’objet trajet <strong>«{{trajet.title}}» ?</strong> Les éléments suivants sont liés à celui-ci et seront aussi supprimés&nbsp;:</p>
+            <h2>Résumé</h2>
+            <ul>
+                <li>Trajets: {{trajet.id}}</li>
+                <li>Passagers: {{nbre}}</li>
+            </ul>
+            <h2>Objets</h2>
+            <ul>
+                <li>Trajet: <a href="{% url 'show' trajet.id %}">{{trajet.title}}</a>
+                    <ul>
+                        {% for pas in passagers %}
+                            {% if trajet.title == pas.trajet.title %}
+                                <li>Passager : <a href="{% url 'affichePassager' pas.id %}">{{ pas.prenom }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </li>
+            </ul>
+            <form action="{% url 'trajetoire' %}">
+                <div>
+                    <input type="hidden" name="post" value="yes">
+                    <input type="submit" value="Oui, je suis sûr">
+                    <a href="{% url 'trajetoire' %}" class="button cancel-link">Non, revenir à la page précédente</a>
+                </div>
+            </form>
+            <br class="clear">
+        </div>
+      </div>
+{% endblock %}

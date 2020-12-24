@@ -1,0 +1,21 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}Covoiturage{% endblock %}
+
+{% block body %}
+    <h1></h1>
+    <h2>[Conducteur : {{ cond_id.id }}]</h2><br>
+    <article>
+        <h4 class="title">{{cond_id.prenom }} - {{ cond_id.nom|upper }}</h4>
+        <p class="content">Place disponible : </p>
+        <p class="content">Trajets proposés :
+                    {% for trajet in trajets %}
+                        {% if trajet.conducteur.id == cond_id.id %}
+            <a href="{% url 'show' trajet.id %}">[ {{trajet.title }} ]</a>
+                        {% endif %}
+                    {% endfor %}
+        </p>
+    </article>
+
+    <p><a href="{% url 'show' cond_id.id %}">Précédent.</a></p>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}Covoiturage{% endblock %}
+
+{% block body %}
+    <h1></h1>
+    <h2>Blog des passagers</h2>
+    <h1></h1>
+    {% for passager in passagers %}
+        <article>
+            <h5 class="title">{{ passager.prenom }} - {{ passager.nom|upper }}</h5>
+            <p class="content">Trajets inscrits :
+                    {% for trajet in trajets %}
+                        {% if trajet.title == passager.trajet.title %}
+                <a href="{% url 'show' trajet.id %}">[ {{ trajet.title }} ]</a>
+                        {% endif %}
+                    {% endfor %}
+                 </p>
+        </article>
+    {% endfor %}
+    <p><a href="{% url 'index'%}">Tous les trajets.</a></p>
+{% endblock %}
